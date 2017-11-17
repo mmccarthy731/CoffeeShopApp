@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "UserRegistration";
+}
+
+<script>
+    function validatePhone(input){
+        var phoneno = /^\d{10}$/;
+        if (input.value.match(phoneno))  
+        {  
+            return true;
+        }  
+        else  
+        {
+            alert("Invalid phone number.");
+            return false;
+        }
+    }
+
+</script>
+
+<h2 id="head1">User Registration</h2>
+
+<h3 id="head2">Please fill out the form in order to register:</h3><br />
+
+@model CoffeeShopApp.Models.User
+<form action="/Home/RegisterNewUser" method="post">
+    <div class="form-group">
+        <label for="FirstName">First Name:</label>
+        <input type="text" class="form-control" name="FirstName" id="firstName" pattern="^[A-Za-z.-]{1,}$" title="Enter a valid name." required>
+    </div>
+    <div class="form-group">
+        <label for="LastName">Last Name:</label>
+        <input type="text" class="form-control" name="LastName" id="lastName" pattern="^[A-Za-z.-]{1,}$" title="Enter a valid name." required>
+    </div>
+    <div class="form-group">
+         <label for="Email">Email Address:</label>
+         <input type="email" class="form-control" name="Email" id="email" aria-describedby="emailHelp" required>
+     </div>
+    <div class="form-group">
+        <label for="PhoneNumber">Phone Number:</label>
+        <input type="text" class="form-control" name="PhoneNumber "id="phoneNumber" pattern="^[0-9]{10}$" title="1234567890" maxlength="10" required>
+    </div>
+     <div class="form-group">
+         <label for="Password">Password:</label>
+         <input type="password" class="form-control" name="Password" id="password" pattern="^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,20}$" title="Must be 8-20 characters long and contain at least one number" required>
+     </div>
+     <button type="submit" class="btn btn-primary">Register</button>
+</form>
