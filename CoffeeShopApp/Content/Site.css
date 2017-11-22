@@ -54,3 +54,22 @@ textarea {
     color: white;
     background-color: darkblue;
 }
+
+#errorMessage{
+    color: red;
+}
+
+#mainPageHead{
+    font-size: 24px;
+    color: saddlebrown
+}
+
+#registerButton{
+    color: darkblue;
+    background-color: white;
+}
+
+#registerButton{
+    color: white;
+    background-color: darkblue;
+}

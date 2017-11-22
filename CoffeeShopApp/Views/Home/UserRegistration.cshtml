@@ -2,20 +2,15 @@
     ViewBag.Title = "UserRegistration";
 }
 
-<script>
-    function validatePhone(input){
-        var phoneno = /^\d{10}$/;
-        if (input.value.match(phoneno))  
-        {  
-            return true;
-        }  
-        else  
-        {
-            alert("Invalid phone number.");
+<script type="text/javascript">
+    function validatepwd() {
+        var input = document.getElementById('password2').value;
+        if (input != document.getElementById('password').value) {
+            document.getElementById('errorMessage').innerHTML = "Passwords must match!"
             return false;
         }
+        return true;
     }
-
 </script>
 
 <h2 id="head1">User Registration</h2>
@@ -26,23 +21,31 @@
 <form action="/Home/RegisterNewUser" method="post">
     <div class="form-group">
         <label for="FirstName">First Name:</label>
-        <input type="text" class="form-control" name="FirstName" id="firstName" pattern="^[A-Za-z.-]{1,}$" title="Enter a valid name." required>
+        <input type="text" class="form-control" name="FirstName" id="firstName" pattern="^[A-Za-z.'-]{1,}$" title="Enter a valid name." required>
     </div>
     <div class="form-group">
         <label for="LastName">Last Name:</label>
-        <input type="text" class="form-control" name="LastName" id="lastName" pattern="^[A-Za-z.-]{1,}$" title="Enter a valid name." required>
+        <input type="text" class="form-control" name="LastName" id="lastName" pattern="^[A-Za-z.'-]{1,}$" title="Enter a valid name." required>
     </div>
     <div class="form-group">
          <label for="Email">Email Address:</label>
-         <input type="email" class="form-control" name="Email" id="email" aria-describedby="emailHelp" required>
+         <input type="email" class="form-control" name="Email" id="email" required>
      </div>
     <div class="form-group">
         <label for="PhoneNumber">Phone Number:</label>
-        <input type="text" class="form-control" name="PhoneNumber "id="phoneNumber" pattern="^[0-9]{10}$" title="1234567890" maxlength="10" required>
+        <input type="text" class="form-control" name="PhoneNumber "id="phoneNumber" pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$" title="123-456-7890" maxlength="12" required>
     </div>
      <div class="form-group">
          <label for="Password">Password:</label>
-         <input type="password" class="form-control" name="Password" id="password" pattern="^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,20}$" title="Must be 8-20 characters long and contain at least one number" required>
+         <input type="password" class="form-control" name="Password" id="password" pattern="^(?=.*[0-9])(?=.*[a-zA-Z])[\S]{8,20}$" title="Must be 8-20 characters long and contain at least one number." required>
      </div>
-     <button type="submit" class="btn btn-primary">Register</button>
+    <div class="form-group">
+        <label for="Password">Re-enter Password:</label>
+        <input type="password" class="form-control" name="Password2" id="password2" pattern="^(?=.*[0-9])(?=.*[a-zA-Z])[\S]{8,20}$" title="Must be 8-20 characters long and contain at least one number." required>
+        <p id="errorMessage"></p>
+    </div>
+    <div class="form-group">
+        <input type="checkbox" name="vehicle1" value="signup">Sign me up for the CoffeeTown Newsletter!<br>
+    </div>
+     <button type="submit" id="submit" value="Save" class="btn btn-primary" onclick="return validatepwd()">Register</button>
 </form>

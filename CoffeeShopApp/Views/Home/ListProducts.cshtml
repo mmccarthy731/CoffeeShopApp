@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "ListProducts";
+}
+
+@using CoffeeShopApp.Models;
+<h2>Our Products:</h2>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Stock Quantity</th>
+        <th>Price</th>
+    </tr>
+    @foreach (var Product in ViewBag.ProductList)
+    {
+        <tr>
+            <td>@Product.Name</td>
+            <td>@Product.Description</td>
+            <td>@Product.Quantity</td>
+            <td>@Product.Price</td>
+            <td><button type="button" id="updateProduct" href="/Home/UpdateProduct?@Product.Name">Update</button></td>
+            <td><button type="button" id="deleteProduct" href="/Home/DeleteProduct?@Product.Name" onclick="return confirm('Are you sure?')">Delete</button></td>
+        </tr>
+    }
+</table>
+
+

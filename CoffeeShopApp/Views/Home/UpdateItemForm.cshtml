@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "UpdateItemForm";
+}
+@model CoffeeShopApp.Models.Item
+<h2>UpdateItemForm</h2>
+
+<form action="/Home/SaveUpdatedItem" method="post">
+    <label>Product Name:</label><input type="text" name="Name" readonly value="@ViewBag.ItemToUpdate.Name" /><br />
+    <label>Description:</label><input type="text" name="Description" value="@ViewBag.ItemToUpdate.Description" /><br />
+    <label>Stock Quantity:</label><input type="text" name="Quantity" value="@ViewBag.ItemToUpdate.Quantity" pattern="^[0-9]{1,}$" title="Quantity must be an integer value."/><br />
+    <label>Price</label><input type="text" name="Price" value="@ViewBag.ItemToUpdate.Price" pattern="^[0-9.]{1,}$" title="Price must be an integer or decimal value."/><br />
+    <button type="submit" value="Save">Save Changes</button>
+</form>
+
