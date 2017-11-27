@@ -3,7 +3,7 @@
     ViewBag.Title = "UpdateItemForm";
 }
 @model CoffeeShopApp.Models.Item
-<h2>UpdateItemForm</h2>
+<h2>Update Item Form</h2>
 
 <form action="/Home/SaveUpdatedItem" method="post">
     <label>Product Name:</label><input type="text" name="Name" readonly value="@ViewBag.ItemToUpdate.Name" /><br />

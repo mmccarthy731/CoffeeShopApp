@@ -4,25 +4,25 @@
 }
 
 @using CoffeeShopApp.Models;
-<h2>Our Products:</h2>
-<table class="table">
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Stock Quantity</th>
-        <th>Price</th>
-    </tr>
+
+<div class="container"></div>
+    <h2 id="head">Our Products:</h2>
+    <div class="panel-group">
     @foreach (var Product in ViewBag.ProductList)
     {
-        <tr>
-            <td>@Product.Name</td>
-            <td>@Product.Description</td>
-            <td>@Product.Quantity</td>
-            <td>@Product.Price</td>
-            <td><button type="button" id="updateProduct" href="/Home/UpdateProduct?@Product.Name">Update</button></td>
-            <td><button type="button" id="deleteProduct" href="/Home/DeleteProduct?@Product.Name" onclick="return confirm('Are you sure?')">Delete</button></td>
-        </tr>
+        <div class="panel panel-primary">
+            <div class="panel-heading">@Product.Name</div>
+            <div class="panel-body">
+                @Product.Description<br />
+                Quantity in stock: @Product.Quantity<br />
+                Price: $@Product.Price<br /><br />
+                <a href="/Home/UpdateProduct?Name=@Product.Name" class="btn btn-default" id="updateProduct">Update</a>
+                <a href="/Home/DeleteProduct?Name=@Product.Name" class="btn btn-danger" id="deleteProduct" onclick="return confirm('Are you sure?')">Delete</a>
+            </div>
+        </div><br />
     }
-</table>
+        <a href="/Home/AddItem" class="btn btn-primary" name="AddItem" id="addItem">Add New Item</a>
+    </div>
+
 
 

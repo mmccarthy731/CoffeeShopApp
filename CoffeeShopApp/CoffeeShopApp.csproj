@@ -233,6 +233,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\ListProducts.cshtml" />
     <Content Include="Views\Home\UpdateItemForm.cshtml" />
+    <Content Include="Views\Home\UserSignIn.cshtml" />
+    <Content Include="Views\Home\AddItemForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,9 +13,9 @@ namespace CoffeeShopApp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CoffeeShopEntities : DbContext
+    public partial class CoffeeShopDBEntities1 : DbContext
     {
-        public CoffeeShopEntities()
+        public CoffeeShopDBEntities1()
             : base("name=CoffeeShopDBEntities1")
         {
         }

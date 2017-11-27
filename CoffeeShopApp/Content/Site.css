@@ -23,15 +23,11 @@ textarea {
     max-width: 280px;
 }
 
-#head1{
-    font-size:28px;
-    color:saddlebrown;
-}
-
-#head2{
+#head{
     font-size: 24px;
     color: darkblue;
 }
+
 
 #register {
     color: darkblue;
@@ -53,6 +49,10 @@ textarea {
 #submit:hover{
     color: white;
     background-color: darkblue;
+}
+
+#error{
+    color: red;
 }
 
 #errorMessage{

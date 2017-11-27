@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "UserSignIn";
+}
+
+<h2 id="head1">UserSignIn</h2>
+<form action="/Home/SignIn" method="post">
+    <div class="form-group">
+        <label for="Email">Email Address:</label>
+        <input type="email" class="form-control" name="Email" id="email" required>
+    </div>
+    <div class="form-group">
+        <label for="Password">Password:</label>
+        <input type="password" class="form-control" name="Password" id="password" pattern="^(?=.*[0-9])(?=.*[a-zA-Z])[\S]{8,20}$" title="Must be 8-20 characters long and contain at least one number." required>
+    </div>
+</form>
+

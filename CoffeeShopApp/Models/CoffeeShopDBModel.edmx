@@ -4,91 +4,57 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CoffeeShopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'CoffeeShopDB.dbo.Items' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+    <Schema Namespace="CoffeeShopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Items">
           <Key>
             <PropertyRef Name="Name" />
-            <PropertyRef Name="Description" />
-            <PropertyRef Name="Quantity" />
-            <PropertyRef Name="Price" />
           </Key>
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Quantity" Type="smallint" Nullable="false" />
-          <Property Name="Price" Type="smallmoney" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="8" Scale="2" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'CoffeeShopDB.dbo.Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Users">
           <Key>
-            <PropertyRef Name="FirstName" />
-            <PropertyRef Name="LastName" />
             <PropertyRef Name="Email" />
-            <PropertyRef Name="PhoneNumber" />
-            <PropertyRef Name="Password" />
           </Key>
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PhoneNumber" Type="nchar" MaxLength="12" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityContainer Name="CoffeeShopDBModelStoreContainer">
-          <EntitySet Name="Items" EntityType="Self.Items" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Items].[Name] AS [Name], 
-    [Items].[Description] AS [Description], 
-    [Items].[Quantity] AS [Quantity], 
-    [Items].[Price] AS [Price]
-    FROM [dbo].[Items] AS [Items]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Users].[FirstName] AS [FirstName], 
-    [Users].[LastName] AS [LastName], 
-    [Users].[Email] AS [Email], 
-    [Users].[PhoneNumber] AS [PhoneNumber], 
-    [Users].[Password] AS [Password]
-    FROM [dbo].[Users] AS [Users]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CoffeeShopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Item">
           <Key>
             <PropertyRef Name="Name" />
-            <PropertyRef Name="Description" />
-            <PropertyRef Name="Quantity" />
-            <PropertyRef Name="Price" />
           </Key>
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Quantity" Type="Int16" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="FirstName" />
-            <PropertyRef Name="LastName" />
-            <PropertyRef Name="Email" />
-            <PropertyRef Name="PhoneNumber" />
-            <PropertyRef Name="Password" />
-          </Key>
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
         </EntityType>
         <EntityContainer Name="CoffeeShopDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Items" EntityType="Self.Item" />
-          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Users" EntityType="CoffeeShopDBModel.User" />
         </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -108,11 +74,11 @@ warning 6002: The table/view 'CoffeeShopDB.dbo.Users' does not have a primary ke
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CoffeeShopDBModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
