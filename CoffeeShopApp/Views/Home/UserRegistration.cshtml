@@ -23,7 +23,7 @@
         <label for="Password">Password:</label>
         <input type="password" class="form-control" name="Password" id="signinpassword" required>
     </div>
-    <button type="submit" id="submit" class="btn btn-primary">Sign In</button><br />
+    <button  class="btn btn-default" type="submit">Sign In</button><br />
     <p id="error">@ViewBag.SignInError</p>
 </form><br />
 
@@ -59,7 +59,7 @@
     <div class="form-group">
         <input type="checkbox" required> I am not a robot.<br>
     </div>
-    <button type="submit" id="submit" class="btn btn-primary" onclick="return validatepwd()">Register</button><br />
+    <button class="btn btn-default" type="submit" onclick="return validatepwd()">Register</button><br />
     <p id="error">@ViewBag.RegistrationError</p>
 </form>
 

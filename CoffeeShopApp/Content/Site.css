@@ -23,17 +23,26 @@ textarea {
     max-width: 280px;
 }
 
+body {
+    background-image: url('Photos/CoffeeBeans.jpg');
+}
+
 #head{
-    font-size: 24px;
-    color: darkblue;
+    font-size: 28px;
+    color: white;
 }
 
 
 #register {
-    color: darkblue;
+    color: white;
     font-size: 20px;
     text-align: right;
     margin-right: 75%;
+}
+
+.form-group{
+    color: white;
+    font-size: 20px;
 }
 
 .format{
@@ -41,14 +50,24 @@ textarea {
     background-color: white;
 }
 
-#submit{
-    color: darkblue;
-    background-color: white;
+.img-thumbnail {
+    width: 250px;
+    height: 250px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-#submit:hover{
-    color: white;
-    background-color: darkblue;
+#pHead{
+    color: midnightblue;
+    font-size: 20px;
+    text-align: center;
+}
+
+.panel-body{
+    align-content: center;
+    text-align: center;
+    align-items: center;
 }
 
 #error{
@@ -69,7 +88,12 @@ textarea {
     background-color: white;
 }
 
-#registerButton{
+#registerButton:hover{
     color: white;
     background-color: darkblue;
+}
+
+.panel-group{
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

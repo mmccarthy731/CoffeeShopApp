@@ -11,6 +11,8 @@ namespace CoffeeShopApp.Controllers
 {
     public class HomeController : Controller
     {
+        IGenericDAL DAL;
+
         public ActionResult Index()
         {
             return View();
@@ -23,18 +25,17 @@ namespace CoffeeShopApp.Controllers
 
         public ActionResult RegisterNewUser(User NewUser)
         {
+            DAL = new CoffeeShopDAL();
+
             if (ModelState.IsValid)
             {
-                CoffeeShopDBEntities1 ORM = new CoffeeShopDBEntities1();
-
-                if (ORM.Users.Find(NewUser.Email) != null)
+                if (DAL.FindUser(NewUser.Email))
                 {
                     ViewBag.RegistrationError = "An account with the provided email address already exists.";
                     return View("UserRegistration");
                 }
 
-                ORM.Users.Add(NewUser);
-                ORM.SaveChanges();
+                DAL.AddNewUser(NewUser);
 
                 return RedirectToAction("ListProducts");
             }
@@ -44,27 +45,42 @@ namespace CoffeeShopApp.Controllers
             }
         }
 
+        public ActionResult SignIn(string Email, string Password)
+        {
+            DAL = new CoffeeShopDAL();
+
+            if (!DAL.FindUser(Email))
+            {
+                ViewBag.SignInError = "There is no account associated with that email address.";
+                return View("UserRegistration");
+            }
+            else if (!DAL.CheckPassword(Email, Password))
+            {
+                ViewBag.SignInError = "Incorrect Password. Please try again.";
+                return View("UserRegistration");
+            }
+            else
+            {
+                return RedirectToAction("ListProducts");
+            }
+        }
+
         public ActionResult ListProducts()
         {
-            CoffeeShopDBEntities1 ORM = new CoffeeShopDBEntities1();
+            DAL = new CoffeeShopDAL();
 
-            List<Item> productList = ORM.Items.ToList();
-
-            ViewBag.ProductList = productList;
+            ViewBag.ProductList = DAL.GetItemList();
 
             return View("ListProducts");
         }
 
         public ActionResult DeleteProduct(string name)
         {
-            CoffeeShopDBEntities1 ORM = new CoffeeShopDBEntities1();
+            DAL = new CoffeeShopDAL();
 
-            Item itemToDelete = ORM.Items.Find(name);
-            
-            if (itemToDelete != null)
+            if (DAL.FindItem(name))
             {
-                ORM.Items.Remove(itemToDelete);
-                ORM.SaveChanges();
+                DAL.DeleteItem(name);
             }
 
             return RedirectToAction("ListProducts");
@@ -72,13 +88,11 @@ namespace CoffeeShopApp.Controllers
 
         public ActionResult UpdateProduct(string name)
         {
-            CoffeeShopDBEntities1 ORM = new CoffeeShopDBEntities1();
+            DAL = new CoffeeShopDAL();
 
-            Item itemToUpdate = ORM.Items.Find(name);
-
-            if (itemToUpdate != null)
+            if (DAL.FindItem(name))
             {
-                ViewBag.ItemToUpdate = itemToUpdate;
+                ViewBag.ItemToUpdate = DAL.UpdateItem(name);
 
                 return View("UpdateItemForm");
             }
@@ -88,62 +102,33 @@ namespace CoffeeShopApp.Controllers
             }
         }
 
-        public ActionResult SaveUpdatedItem(Item itemToUpdate)
+        public ActionResult SaveUpdatedItem(Item updatedItem)
         {
-            CoffeeShopDBEntities1 ORM = new CoffeeShopDBEntities1();
+            DAL = new CoffeeShopDAL();
 
-            Item temp = ORM.Items.Find(itemToUpdate.Name);
-
-            temp.Description = itemToUpdate.Description;
-            temp.Quantity = itemToUpdate.Quantity;
-            temp.Price = itemToUpdate.Price;
-
-            ORM.Entry(temp).State = System.Data.Entity.EntityState.Modified;
-            ORM.SaveChanges();
+            DAL.SaveUpdatedItem(updatedItem);
 
             return RedirectToAction("ListProducts");
         }
 
         public ActionResult AddItem()
         {
-
             return View("AddItemForm");
         }
 
         public ActionResult AddNewItem(Item item)
         {
+            DAL = new CoffeeShopDAL();
+
             if (ModelState.IsValid)
             {
-                CoffeeShopDBEntities1 ORM = new CoffeeShopDBEntities1();
-
-                ORM.Items.Add(item);
-                ORM.SaveChanges();
+                DAL.AddNewItem(item);
 
                 return RedirectToAction("ListProducts");
-            }
-
-            return View("AddItemForm");
-        }
-
-        public ActionResult SignIn(string Email, string Password)
-        {
-            CoffeeShopDBEntities1 ORM = new CoffeeShopDBEntities1();
-
-            User user = ORM.Users.Find(Email);
-
-            if (user == null)
-            {
-                ViewBag.SignInError = "There is no account associated with that email address.";
-                return View("UserRegistration");
-            }
-            else if (Password != user.Password)
-            {
-                ViewBag.SignInError = "Incorrect Password. Please try again.";
-                return View("UserRegistration");
             }
             else
             {
-                return RedirectToAction("ListProducts");
+                return View("AddItemForm");
             }
         }
     }

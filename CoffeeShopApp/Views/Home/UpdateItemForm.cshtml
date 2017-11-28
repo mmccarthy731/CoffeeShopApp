@@ -3,13 +3,25 @@
     ViewBag.Title = "UpdateItemForm";
 }
 @model CoffeeShopApp.Models.Item
-<h2>Update Item Form</h2>
+<h2 id="head">Update Item Form</h2>
 
-<form action="/Home/SaveUpdatedItem" method="post">
-    <label>Product Name:</label><input type="text" name="Name" readonly value="@ViewBag.ItemToUpdate.Name" /><br />
-    <label>Description:</label><input type="text" name="Description" value="@ViewBag.ItemToUpdate.Description" /><br />
-    <label>Stock Quantity:</label><input type="text" name="Quantity" value="@ViewBag.ItemToUpdate.Quantity" pattern="^[0-9]{1,}$" title="Quantity must be an integer value."/><br />
-    <label>Price</label><input type="text" name="Price" value="@ViewBag.ItemToUpdate.Price" pattern="^[0-9.]{1,}$" title="Price must be an integer or decimal value."/><br />
-    <button type="submit" value="Save">Save Changes</button>
+<form action="/Home/AddNewItem" method="post">
+    <div class="form-group">
+        <label for="Name">Product Name:</label>
+        <input type="text" class="form-control" name="Name" id="name" readonly value="@ViewBag.ItemToUpdate.Name" />
+    </div>
+    <div class="form-group">
+        <label for="Description">Description:</label>
+        <input type="text" class="form-control" name="Description" id="description" value="@ViewBag.ItemToUpdate.Description" required />
+    </div>
+    <div class="form-group">
+        <label for="Quantity">Stock Quantity:</label>
+        <input type="text" class="form-control" name="Quantity" id="quantity" pattern="^[0-9]{1,}$" title="Quantity must be an integer value." value="@ViewBag.ItemToUpdate.Quantity" required/>
+    </div>
+    <div class="form-group">
+        <label for="Price">Price:</label>
+        <input type="text" class="form-control" name="Price" id="price" pattern="^[0-9.]{1,}$" title="Price must be an integer or decimal value." value="@ViewBag.ItemToUpdate.Price" required/>
+    </div><br />
+    <button class="btn btn-default" type="submit">Update Item</button>
 </form>
 

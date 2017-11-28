@@ -4,25 +4,27 @@
 }
 
 @using CoffeeShopApp.Models;
-
-<div class="container"></div>
-    <h2 id="head">Our Products:</h2>
-    <div class="panel-group">
-    @foreach (var Product in ViewBag.ProductList)
-    {
-        <div class="panel panel-primary">
-            <div class="panel-heading">@Product.Name</div>
-            <div class="panel-body">
-                @Product.Description<br />
-                Quantity in stock: @Product.Quantity<br />
-                Price: $@Product.Price<br /><br />
-                <a href="/Home/UpdateProduct?Name=@Product.Name" class="btn btn-default" id="updateProduct">Update</a>
-                <a href="/Home/DeleteProduct?Name=@Product.Name" class="btn btn-danger" id="deleteProduct" onclick="return confirm('Are you sure?')">Delete</a>
+    <h2 id="head">Our Products:</h2><br />
+    <a href="/Home/AddItem" class="btn btn-default" name="AddItem">Add New Item</a><br /><br />
+    <div class="container">
+        <div class="row align-items-center">
+        @foreach (var Product in ViewBag.ProductList)
+        {
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading" id="pHead">@Product.Name</div>
+                    <div class="panel-body">
+                        <img src="~/Content/Photos/@Product.Name .jpg" class="img-thumbnail" alt="@Product.Name" /><br />
+                        @Product.Description<br />
+                        Quantity in stock: @Product.Quantity<br />
+                        Price: $@Product.Price<br /><br />
+                        <a href="/Home/UpdateProduct?Name=@Product.Name" class="btn btn-default" id="updateProduct">Update</a>
+                        <a href="/Home/DeleteProduct?Name=@Product.Name" class="btn btn-danger" id="deleteProduct" onclick="return confirm('Are you sure?')">Delete</a>
+                    </div>
+                </div>
             </div>
-        </div><br />
-    }
-        <a href="/Home/AddItem" class="btn btn-primary" name="AddItem" id="addItem">Add New Item</a>
+        }
+        </div>
     </div>
-
 
 

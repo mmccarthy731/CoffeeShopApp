@@ -150,6 +150,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CoffeeShopDAL.cs" />
+    <Compile Include="Controllers\IGenericDAL.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -181,6 +183,19 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ihopethisworks.css" />
+    <Content Include="Content\Photos\2005 Pontiac Aztek .jpg" />
+    <Content Include="Content\Photos\Cappuccino .jpg" />
+    <Content Include="Content\Photos\Coffee .jpg" />
+    <Content Include="Content\Photos\CoffeeBeans.jpg" />
+    <Content Include="Content\Photos\Decaf Coffee .jpg" />
+    <Content Include="Content\Photos\Espresso .jpg" />
+    <Content Include="Content\Photos\Frappuccino .jpg" />
+    <Content Include="Content\Photos\Grand Circus Blend .jpg" />
+    <Content Include="Content\Photos\Hot Chocolate .jpg" />
+    <Content Include="Content\Photos\Iced Coffee .jpg" />
+    <Content Include="Content\Photos\Latte .jpg" />
+    <Content Include="Content\Photos\Mocha Latte .jpg" />
+    <Content Include="Content\Photos\Pumpkin Spice Latte .jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
